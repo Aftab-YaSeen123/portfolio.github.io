@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Own Code | Portfolio</title>
+
+      <!-- Likns -->
+      <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22246%22%20fill%3D%22%230F0F0F%22%20stroke%3D%22%23EDEDED%22%20stroke-width%3D%2220%22%2F%3E%3Cpath%20d%3D%22M287.382%20106.935C289.078%20101.094%20295.131%2097.7761%20300.861%2099.4277C306.716%20101.115%20310.045%20107.175%20308.391%20112.913L308.388%20112.925L308.385%20112.936L224.791%20405.514C223.103%20411.368%20217.044%20414.697%20211.306%20413.043C205.451%20411.355%20202.123%20405.296%20203.776%20399.558L203.779%20399.546L203.782%20399.535L287.382%20106.935ZM352.895%20185.846C357.153%20181.587%20364.08%20181.587%20368.339%20185.846L431.038%20248.546C435.164%20252.672%20435.293%20259.301%20431.426%20263.583L431.038%20263.99L368.339%20326.69C364.08%20330.949%20357.153%20330.949%20352.895%20326.69C348.636%20322.432%20348.636%20315.505%20352.895%20311.246L400.833%20263.307L407.904%20256.235L400.833%20249.164L352.895%20201.225C348.87%20197.2%20348.65%20190.794%20352.232%20186.507L352.895%20185.846ZM143.895%20185.78C147.921%20181.754%20154.332%20181.537%20158.618%20185.125L159.273%20185.78C163.532%20190.039%20163.532%20196.966%20159.273%20201.225L159.269%20201.229L111.395%20249.169L104.328%20256.245L111.404%20263.312L159.344%20311.186C163.597%20315.445%20163.596%20322.368%20159.339%20326.625C155.08%20330.884%20148.153%20330.884%20143.895%20326.625L81.1943%20263.925C77.0686%20259.799%2076.9398%20253.17%2080.8076%20248.888L81.1943%20248.48L143.895%20185.78Z%22%20fill%3D%22%23EDEDED%22%20stroke%3D%22%23EDEDED%22%20stroke-width%3D%2220%22%2F%3E%3C%2Fsvg%3E" type="image/x-icon" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <style>
+         :root {
+            --bg-color: #050505;
+            --card-bg: #0f0f0f;
+            --text-main: #ededed;
+            --text-muted: #888888;
+            --gray-400: rgba(163, 163, 163, 1);
+            --gray-500: rgba(115, 115, 115, 1);
+            --trans: 0.3s all ease;
+         }
+
+         body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            cursor: none;
+         }
+
+         .content-wrapper p {
+            color: var(--gray-400) !important;
+            margin-bottom: 0;
+         }
+         ul li {
+            color: var(--gray-500);
+         }
+
+         .gray-400,
+         .text-muted {
+            color: var(--gray-500) !important;
+         }
+
+         .gray-500 {
+            color: var(--gray-500) !important;
+         }
+
+         /* Aesthetics Overrides for "Linear" feel */
+         .tracking-tight {
+            letter-spacing: -0.025em;
+         }
+         .tracking-tighter {
+            letter-spacing: -0.05em;
+         }
+
+         ::selection {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+         }
+
+         /* Custom Cursor */
+         #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1rem;
+            height: 1rem;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+         }
+         #cursor-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 3rem;
+            height: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+         }
+
+         /* Grid Background */
+         .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 4rem 4rem;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            pointer-events: none;
+         }
+
+         /* Typography & Layout Utilities */
+         .display-super {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+         }
+
+         .section-padding {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+         }
+
+         /* Nav */
+         .navbar-custom {
+            padding: 1.5rem 6vw;
+            mix-blend-mode: difference;
+         }
+         .nav-link {
+            color: #a3a3a3;
+            font-size: 1.175rem;
+            font-weight: 500;
+            transition: color 0.3s;
+         }
+         .nav-link:hover,
+         .nav-link.active {
+            color: white;
+         }
+
+         /* Cards & Interactions */
+         .project-card {
+            position: relative;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+         }
+
+         .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            aspect-ratio: 4/3;
+            margin-bottom: 1.5rem;
+         }
+         .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+            transition: background 0.5s;
+            z-index: 10;
+         }
+         .project-card:hover .card-overlay {
+            background: transparent;
+         }
+         .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: transform 0.7s ease-out, filter 0.5s;
+         }
+         .project-card:hover .project-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+         }
+         .card-arrow {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            padding: 0.5rem;
+            opacity: 0;
+            transform: translateY(-1rem);
+            transition: all 0.3s;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+         }
+         .project-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateY(0);
+         }
+
+         /* Gradient Text */
+         .text-gradient {
+            background: linear-gradient(to right, #a3a3a3, #525252);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+         }
+
+         /* Utilities */
+         .badge-custom {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a3a3a3;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+         }
+
+         .btn-custom {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-radius: 50rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+         }
+         .btn-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+         }
+
+         .skill-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: background 0.3s;
+         }
+         .skill-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+         }
+
+         .scroll-reveal,
+         .hero-text,
+         .hero-sub,
+         .hero-cta {
+            opacity: 0;
+         }
+
+         .nav-bar {
+            background-color: rgba(15, 15, 15, 0.05);
+            backdrop-filter: blur(10px);
+            z-index: 1099;
+         }
+
+         /* Responsive */
+         @media (min-width: 768px) {
+            .navbar-custom {
+               padding: 1.5rem 6rem;
+            }
+            .content-wrapper {
+               padding-left: 6rem;
+               padding-right: 6rem;
+            }
+            .mt-md-custom {
+               margin-top: 6rem;
+            }
+         }
+
+         @media (max-width: 991px) {
+            .project-card .flex-wrap {
+               flex-direction: column;
+            }
+         }
+
+         @media (max-width: 767px) {
+            #cursor,
+            #cursor-follower {
+               display: none;
+            }
+            body {
+               cursor: auto;
+            }
+            .content-wrapper {
+               padding-left: 1.5rem;
+               padding-right: 1.5rem;
+            }
+
+            .navbar-collapse-cust {
+               position: fixed;
+               /* z-index: 999; */
+               width: 100%;
+               transform: translateX(-100%);
+               padding: 15px 6%;
+               top: 65px;
+               left: 0;
+               opacity: 0;
+               transition: 0.6s all ease;
+               flex-direction: column;
+            }
+
+            .navbar-collapse-cust.show {
+               transform: translateX(0);
+               background-color: var(--bg-color);
+               opacity: 1;
+            }
+
+            .navbar-collapse-cust a.nav-link {
+               font-size: 16px;
+            }
+
+            .section-padding {
+               padding-top: 4rem;
+               padding-bottom: 4rem;
+            }
+
+            .min-vh-100 {
+               min-height: unset !important;
+            }
+
+            .banner {
+               padding-top: 6rem !important;
+               padding-bottom: 2rem !important;
+            }
+
+            .navbar-custom {
+               padding-top: 1.1rem;
+               padding-bottom: 1.1rem;
+            }
+
+            .display-super {
+               font-size: clamp(2rem, 8vw, 6rem);
+            }
+
+            main.position-relative p {
+               font-size: 18px !important;
+            }
+
+            .project-card .flex-wrap {
+               flex-direction: column;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Custom Cursor Elements -->
+      <div id="cursor"></div>
+      <div id="cursor-follower"></div>
+
+      <!-- Background Grid -->
+      <div class="bg-grid"></div>
+
+      <!-- Navigation -->
+      <nav class="navbar nav-bar navbar-expand navbar-custom fixed-top w-100 d-flex justify-content-between align-items-center">
+         <a href="#" class="text-white text-decoration-none fs-5 fw-medium tracking-tight hover-trigger fs-4" data-hover-scale="1.5">OwN<span style="color: #737373">.CoDe</span> </a>
+         <div class="d-flex gap-lg-4 gap-3 navbar-collapse-cust">
+            <a href="#home" class="nav-link hover-trigger active">Home</a>
+            <a href="#projects" class="nav-link hover-trigger">Projects</a>
+            <a href="#stack" class="nav-link hover-trigger">Stack</a>
+            <a href="#contact" class="nav-link hover-trigger">Contact</a>
+         </div>
+         <button class="d-md-none btn text-white p-0 hover-trigger border-0 bg-transparent ham-btn">
+            <span class="iconify icon-manu" data-icon="lucide:menu" data-width="24" data-height="24"></span>
+         </button>
+      </nav>
+
+      <main class="position-relative z-1">
+         <!-- Hero Section -->
+         <section class="min-vh-100 d-flex flex-column justify-content-center content-wrapper pt-5 banner" id="home">
+            <div class="container-fluid p-0 text-center" style="max-width: 1000px; margin: auto">
+               <div class="overflow-hidden mb-1">
+                  <h1 class="hero-text display-super fw-medium tracking-tighter text-white mb-0" style="transform: translateY(100%)">Crafting scalable</h1>
+               </div>
+               <div class="overflow-hidden mb-4">
+                  <h1 class="hero-text display-super fw-medium tracking-tighter text-gradient mb-0" style="transform: translateY(100%)">frontend experiences.</h1>
+               </div>
+
+               <div class="overflow-hidden mt-4 mx-auto" style="max-width: 550px">
+                  <p class="hero-sub fs-5 fw-light text-muted lh-base" style="transform: translateY(2.5rem)">Frontend Developer specializing in modern JavaScript ecosystems and custom WordPress solutions. I build pixel-perfect interfaces with HTML, React, ACF, and Elementor.</p>
+               </div>
+
+               <div class="mt-md-5 mt-4 hero-cta" style="transform: translateY(1rem)">
+                  <a href="#projects" class="btn-custom hover-trigger group">
+                     Explore Projects
+                     <span class="iconify transition-transform" data-icon="lucide:arrow-down" data-width="16"></span>
+                  </a>
+               </div>
+            </div>
+         </section>
+
+         <!-- Selected Work -->
+         <section id="projects" class="section-padding content-wrapper border-opacity-10">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-md-items-end mb-md-5 mb-3 pb-4">
+               <h2 class="display-6 fw-medium tracking-tight text-white scroll-reveal">Selected Work</h2>
+               <span class="text-muted small mt-3 mt-md-0 scroll-reveal">2023 — Present</span>
+            </div>
+
+            <div class="row g-5">
+               <!-- Project 1 -->
+               <div class="col-md-6 scroll-reveal">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Project 1" class="project-img" />
+                        <div class="card-arrow">
+                           <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Chronos Finance</h3>
+                           <p class="text-muted small">Fintech • Dashboard</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">React</span>
+                           <span class="badge-custom">GSAP</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 2 -->
+               <div class="col-md-6 scroll-reveal mt-md-custom">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Project 2" class="project-img" />
+                        <div class="card-arrow">
+                           <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Aether Lens</h3>
+                           <p class="text-muted small">AI Tool • Interface</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">Next.js</span>
+                           <span class="badge-custom">WebGL</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 3 -->
+               <div class="col-md-6 scroll-reveal">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2670&auto=format&fit=crop" alt="Project 3" class="project-img" />
+                        <div class="card-arrow">
+                           <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Vortex UI</h3>
+                           <p class="text-muted small">Design System • Library</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">TypeScript</span>
+                           <span class="badge-custom">Bootstrap</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 4 -->
+               <div class="col-md-6 scroll-reveal mt-md-custom">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2670&auto=format&fit=crop" alt="Project 4" class="project-img" />
+                        <div class="card-arrow">
+                           <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Nova Architecture</h3>
+                           <p class="text-muted small">Corporate • 3D</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">Three.js</span>
+                           <span class="badge-custom">Vue</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <!-- Services / Stack -->
+         <section id="stack" class="section-padding content-wrapper position-relative overflow-hidden" style="background-color: #0a0a0a">
+            <!-- Glow -->
+            <div class="position-absolute top-50 start-50 translate-middle rounded-circle" style="width: 500px; height: 500px; background: rgba(255, 255, 255, 0.05); filter: blur(120px); pointer-events: none"></div>
+
+            <div class="container-fluid p-0 position-relative z-2" style="max-width: 900px">
+               <div class="row g-5">
+                  <div class="col-md-6">
+                     <h2 class="h3 fw-medium tracking-tight text-white mb-4 scroll-reveal">Stack & Tools</h2>
+                     <div class="row g-3">
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="lucide:code-2" data-width="20"></span>
+                              <span class="small text-light">Frontend Dev</span>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="lucide:layers" data-width="20"></span>
+                              <span class="small text-light">UI Design</span>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="lucide:cpu" data-width="20"></span>
+                              <span class="small text-light">WebGL</span>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="lucide:smartphone" data-width="20"></span>
+                              <span class="small text-light">Responsive</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-md-6 d-flex flex-column justify-content-center">
+                     <p class="fs-5 fw-light text-muted lh-base mb-4 scroll-reveal">With over 3 years of experience, I specialize in building performant, accessible, and beautiful web applications. I believe that motion is not just an embellishment, but a core part of the user experience.</p>
+                     <div class="scroll-reveal">
+                        <ul class="list-unstyled text-muted small d-flex flex-column gap-3">
+                           <li class="d-flex align-items-center gap-2">
+                              <span class="iconify text-white" data-icon="lucide:check" data-width="14"></span>
+                              Pixel-perfect implementation
+                           </li>
+                           <li class="d-flex align-items-center gap-2">
+                              <span class="iconify text-white" data-icon="lucide:check" data-width="14"></span>
+                              Advanced animations & Interaction
+                           </li>
+                           <li class="d-flex align-items-center gap-2">
+                              <span class="iconify text-white" data-icon="lucide:check" data-width="14"></span>
+                              SEO & Performance Optimization
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <!-- Footer / Contact -->
+         <section id="contact" class="section-padding content-wrapper border-top border-secondary border-opacity-10 d-flex flex-column align-items-center text-center">
+            <span class="small mb-4 border border-secondary border-opacity-50 px-3 py-1 rounded-pill scroll-reveal">Open for opportunities</span>
+
+            <h2 class="display-1 fw-medium tracking-tighter text-white mb-md-4 mb-3 hover-trigger scroll-reveal" data-hover-scale="2.5">
+               <a href="mailto:hello@example.com" class="text-white text-decoration-none" style="transition: color 0.3s">Let's Build</a>
+            </h2>
+
+            <div class="d-flex gap-4 mt-4 scroll-reveal">
+               <a href="#" class="btn btn-outline-light rounded-circle p-3 d-flex align-items-center justify-content-center hover-trigger" style="width: 50px; height: 50px; border-color: rgba(255, 255, 255, 0.1)">
+                  <span class="iconify" data-icon="lucide:mail" data-width="20"></span>
+               </a>
+               <a href="#" class="btn btn-outline-light rounded-circle p-3 d-flex align-items-center justify-content-center hover-trigger" style="width: 50px; height: 50px; border-color: rgba(255, 255, 255, 0.1)">
+                  <span class="iconify" data-icon="lucide:github" data-width="20"></span>
+               </a>
+               <a href="#" class="btn btn-outline-light rounded-circle p-3 d-flex align-items-center justify-content-center hover-trigger" style="width: 50px; height: 50px; border-color: rgba(255, 255, 255, 0.1)">
+                  <span class="iconify" data-icon="lucide:linkedin" data-width="20"></span>
+               </a>
+            </div>
+
+            <footer class="mt-md-5 pt-5 gray-500 small w-100 d-flex justify-md-content-between justify-content-center gap-2 flex-md-row flex-column flex-wrap text-md-start text-center" style="max-width: 1000px">
+               <span>© 2026 Portfolio.</span>
+               <span>Crafted with GSAP & Bootstrap.</span>
+            </footer>
+         </section>
+      </main>
+
+      <!-- Scripts -->
+      <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+      <!-- gsap -->
+      <script>
+         // Wait for DOM
+         document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Custom Cursor Logic
+            const cursor = document.getElementById("cursor");
+            const follower = document.getElementById("cursor-follower");
+
+            // Only activate custom cursor on non-touch devices
+            if (window.matchMedia("(pointer: fine)").matches) {
+               gsap.set(cursor, {xPercent: -50, yPercent: -50});
+               gsap.set(follower, {xPercent: -50, yPercent: -50});
+
+               window.addEventListener("mousemove", (e) => {
+                  gsap.to(cursor, {x: e.clientX, y: e.clientY, duration: 0.1});
+                  gsap.to(follower, {x: e.clientX, y: e.clientY, duration: 0.3});
+               });
+
+               // Hover effects
+               const hoverTriggers = document.querySelectorAll(".hover-trigger");
+
+               hoverTriggers.forEach((link) => {
+                  link.addEventListener("mouseenter", () => {
+                     gsap.to(cursor, {scale: 0, duration: 0.2});
+                     gsap.to(follower, {
+                        scale: 3,
+                        backgroundColor: "rgba(255,255,255,0.1)",
+                        borderColor: "transparent",
+                        duration: 0.2,
+                     });
+                  });
+
+                  link.addEventListener("mouseleave", () => {
+                     gsap.to(cursor, {scale: 1, duration: 0.2});
+                     gsap.to(follower, {
+                        scale: 1,
+                        backgroundColor: "transparent",
+                        borderColor: "rgba(255,255,255,0.2)",
+                        duration: 0.2,
+                     });
+                  });
+               });
+            }
+
+            // Hero Animation
+            const tl = gsap.timeline();
+
+            tl.to(".hero-text", {
+               y: 0,
+               opacity: 1,
+               duration: 1.2,
+               stagger: 0.15,
+               ease: "power4.out",
+               delay: 0.2,
+            })
+               .to(
+                  ".hero-sub",
+                  {
+                     y: 0,
+                     opacity: 1,
+                     duration: 1,
+                     ease: "power3.out",
+                  },
+                  "-=0.8"
+               )
+               .to(
+                  ".hero-cta",
+                  {
+                     y: 0,
+                     opacity: 1,
+                     duration: 0.8,
+                     ease: "power3.out",
+                  },
+                  "-=0.6"
+               );
+
+            // Scroll Reveal Animation
+            gsap.utils.toArray(".scroll-reveal").forEach((element) => {
+               gsap.fromTo(
+                  element,
+                  {
+                     y: 50,
+                     opacity: 0,
+                  },
+                  {
+                     scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse",
+                     },
+                     y: 0,
+                     opacity: 1,
+                     duration: 1,
+                     ease: "power3.out",
+                  }
+               );
+            });
+
+            // Parallax Effect for Project Images
+            if (window.innerWidth > 768) {
+               gsap.utils.toArray(".project-img").forEach((img) => {
+                  gsap.to(img, {
+                     yPercent: 10,
+                     ease: "none",
+                     scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true,
+                     },
+                  });
+               });
+            }
+         });
+      </script>
+
+      <script>
+         // hamburger
+         $(document).ready(function () {
+            $(".ham-btn").click(function () {
+               $(".navbar-collapse-cust").toggleClass("show");
+               $(".icon-manu").attr("data-icon", function (i, val) {
+                  return val == "lucide:menu" ? "mdi:arrow-left" : "lucide:menu";
+               });
+               $("html").toggleClass("overflow-hidden");
+            });
+         });
+
+         // scroll navitem active
+         $(document).ready(function () {
+            $(window).scroll(function () {
+               var scrollPosition = $(window).scrollTop();
+
+               $("section").each(function () {
+                  var topOffset = $(this).offset().top;
+                  var bottomOffset = topOffset + $(this).outerHeight();
+
+                  if (scrollPosition >= topOffset - 400 && scrollPosition < bottomOffset - 400) {
+                     var id = $(this).attr("id");
+                     $(".navbar a").removeClass("active");
+                     $('.navbar a[href="#' + id + '"]').addClass("active");
+                  }
+               });
+            });
+         });
+      </script>
+   </body>
+</html>
