@@ -28,6 +28,7 @@
             color: var(--text-main);
             overflow-x: hidden;
             cursor: none;
+            text-transform: capitalize;
          }
 
          .content-wrapper p {
@@ -247,6 +248,10 @@
             z-index: 1099;
          }
 
+         .p-cards.hidden {
+            display: none;
+         }
+
          /* Responsive */
          @media (min-width: 768px) {
             .navbar-custom {
@@ -363,14 +368,14 @@
          <section class="min-vh-100 d-flex flex-column justify-content-center content-wrapper pt-5 banner" id="home">
             <div class="container-fluid p-0 text-center" style="max-width: 1000px; margin: auto">
                <div class="overflow-hidden mb-1">
-                  <h1 class="hero-text display-super fw-medium tracking-tighter text-white mb-0" style="transform: translateY(100%)">Crafting scalable</h1>
+                  <h1 class="hero-text display-super fw-medium tracking-tighter text-white mb-0 text-capitalize" style="transform: translateY(100%)">Crafting scalable</h1>
                </div>
                <div class="overflow-hidden mb-4">
-                  <h1 class="hero-text display-super fw-medium tracking-tighter text-gradient mb-0" style="transform: translateY(100%)">frontend experiences.</h1>
+                  <h1 class="hero-text display-super fw-medium tracking-tighter text-gradient mb-0 text-capitalize" style="transform: translateY(100%)">frontend experiences.</h1>
                </div>
 
                <div class="overflow-hidden mt-4 mx-auto" style="max-width: 550px">
-                  <p class="hero-sub fs-5 fw-light text-muted lh-base" style="transform: translateY(2.5rem)">Frontend Developer specializing in modern JavaScript ecosystems and custom WordPress solutions. I build pixel-perfect interfaces with HTML, React, ACF, and Elementor.</p>
+                  <p class="hero-sub fs-5 fw-light text-muted lh-base text-capitalize" style="transform: translateY(2.5rem)">Frontend Developer specializing in modern JavaScript ecosystems and custom WordPress solutions. I build pixel-perfect interfaces with HTML, React, ACF, and Elementor.</p>
                </div>
 
                <div class="mt-md-5 mt-4 hero-cta" style="transform: translateY(1rem)">
@@ -391,11 +396,11 @@
 
             <div class="row g-5">
                <!-- Project 1 -->
-               <div class="col-md-6 scroll-reveal">
+               <div class="col-md-6 scroll-reveal p-cards">
                   <div class="project-card hover-trigger cursor-none">
                      <div class="card-image-wrapper">
                         <div class="card-overlay"></div>
-                        <img src="https://storerav.com/assets/images/about-service-thumnail.webp" alt="pillyponka-thumbnail" alt="Project 1" class="project-img" />
+                        <img src="assets/images/storerav-thumbnail.png" alt="" alt="storerav-thumbnail" class="project-img" />
                         <div class="card-arrow">
                            <a href="https://storerav.com/">
                               <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
@@ -417,11 +422,11 @@
                </div>
 
                <!-- Project 2 -->
-               <div class="col-md-6 scroll-reveal mt-md-custom">
+               <div class="col-md-6 scroll-reveal mt-md-custom p-cards">
                   <div class="project-card hover-trigger cursor-none">
                      <div class="card-image-wrapper">
                         <div class="card-overlay"></div>
-                        <img src="https://img.sanishtech.com/u/902802e7ca67ab8e4034404dfe63a834.png" alt="zohoone-thumbnail" class="project-img" />
+                        <img src="assets/images/zohoone-thumbnail.png" alt="zohoone-thumbnail" class="project-img" />
                         <div class="card-arrow">
                            <a href="https://zohoonedevelopers.com/">
                               <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
@@ -442,50 +447,165 @@
                </div>
 
                <!-- Project 3 -->
-               <div class="col-md-6 scroll-reveal">
+               <div class="col-md-6 scroll-reveal p-cards">
                   <div class="project-card hover-trigger cursor-none">
                      <div class="card-image-wrapper">
                         <div class="card-overlay"></div>
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2670&auto=format&fit=crop" alt="Project 3" class="project-img" />
+                        <img src="assets/images/ribbash-thumbnal.png" alt="ribbash-thumbnal" class="project-img" />
                         <div class="card-arrow">
-                           <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           <a href="https://oasis.ribbashstaging.com">
+                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           </a>
                         </div>
                      </div>
                      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
                         <div>
-                           <h3 class="h5 fw-medium text-white mb-1">Vortex UI</h3>
-                           <p class="text-muted small">Design System • Library</p>
+                           <h3 class="h5 fw-medium text-white mb-1">Oasis Rebbash</h3>
+                           <p class="text-muted small">AI Products</p>
                         </div>
                         <div class="d-flex gap-2">
-                           <span class="badge-custom">TypeScript</span>
+                           <span class="badge-custom">Next.js</span>
                            <span class="badge-custom">Bootstrap</span>
+                           <span class="badge-custom">CSS3</span>
                         </div>
                      </div>
                   </div>
                </div>
 
                <!-- Project 4 -->
-               <div class="col-md-6 scroll-reveal mt-md-custom">
+               <div class="col-md-6 scroll-reveal mt-md-custom p-cards">
                   <div class="project-card hover-trigger cursor-none">
                      <div class="card-image-wrapper">
                         <div class="card-overlay"></div>
-                        <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2670&auto=format&fit=crop" alt="Project 4" class="project-img" />
+                        <img src="assets/images/shirmo-dashboard-thumbnai.png" alt="shirmo-dashboard-thumbnai" class="project-img" />
                         <div class="card-arrow">
-                           <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           <a href="https://github.com/Aftab-YaSeen123/shirmo-dashboard.github.io">
+                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           </a>
                         </div>
                      </div>
                      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
                         <div>
-                           <h3 class="h5 fw-medium text-white mb-1">Nova Architecture</h3>
-                           <p class="text-muted small">Corporate • 3D</p>
+                           <h3 class="h5 fw-medium text-white mb-1">Shirmo Dashboard</h3>
+                           <p class="text-muted small">Manage Products</p>
                         </div>
                         <div class="d-flex gap-2">
-                           <span class="badge-custom">Three.js</span>
-                           <span class="badge-custom">Vue</span>
+                           <span class="badge-custom">Sneet</span>
+                           <span class="badge-custom">Bootstrap</span>
+                           <span class="badge-custom">SCSS</span>
                         </div>
                      </div>
                   </div>
                </div>
+
+               <!-- Project 5 -->
+               <div class="col-md-6 scroll-reveal p-cards hidden">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="assets/images/storerav-thumbnail.png" alt="" alt="storerav-thumbnail" class="project-img" />
+                        <div class="card-arrow">
+                           <a href="https://storerav.com/">
+                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">StoreRav</h3>
+                           <p class="text-muted small">Pre Build Theme</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">HTML</span>
+                           <span class="badge-custom">CSS</span>
+                           <span class="badge-custom">Jquery</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 6 -->
+               <div class="col-md-6 scroll-reveal mt-md-custom p-cards hidden">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="assets/images/zohoone-thumbnail.png" alt="zohoone-thumbnail" class="project-img" />
+                        <div class="card-arrow">
+                           <a href="https://zohoonedevelopers.com/">
+                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Zoho One Developers</h3>
+                           <p class="text-muted small">Zoho Services Provider</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">WordPress</span>
+                           <span class="badge-custom">ACF</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 7 -->
+               <div class="col-md-6 scroll-reveal p-cards hidden">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="assets/images/ribbash-thumbnal.png" alt="ribbash-thumbnal" class="project-img" />
+                        <div class="card-arrow">
+                           <a href="https://oasis.ribbashstaging.com">
+                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Oasis Rebbash</h3>
+                           <p class="text-muted small">AI Products</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">Next.js</span>
+                           <span class="badge-custom">Bootstrap</span>
+                           <span class="badge-custom">CSS3</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Project 8 -->
+               <div class="col-md-6 scroll-reveal mt-md-custom p-cards hidden">
+                  <div class="project-card hover-trigger cursor-none">
+                     <div class="card-image-wrapper">
+                        <div class="card-overlay"></div>
+                        <img src="assets/images/shirmo-dashboard-thumbnai.png" alt="shirmo-dashboard-thumbnai" class="project-img" />
+                        <div class="card-arrow">
+                           <a href="https://github.com/Aftab-YaSeen123/shirmo-dashboard.github.io">
+                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div>
+                           <h3 class="h5 fw-medium text-white mb-1">Shirmo Dashboard</h3>
+                           <p class="text-muted small">Manage Products</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                           <span class="badge-custom">Sneet</span>
+                           <span class="badge-custom">Bootstrap</span>
+                           <span class="badge-custom">SCSS</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="d-flex justify-content-center mt-md-5 mt-4">
+               <button class="btn-custom hover-trigger group load-more">
+                  Load More
+                  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24" data-icon="lucide:arrow-down" data-width="16" class="iconify transition-transform iconify--lucide"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7l-7 7l-7-7"></path></svg>
+               </button>
             </div>
          </section>
 
@@ -700,6 +820,7 @@
          });
       </script>
 
+      <!-- hamburger menu  -->
       <script>
          // hamburger
          $(document).ready(function () {
@@ -728,6 +849,29 @@
                   }
                });
             });
+         });
+      </script>
+
+      <!-- Explore more btn  -->
+      <script>
+         const loadMoreBtn = document.querySelector(".load-more");
+
+         loadMoreBtn.addEventListener("click", () => {
+            // Select all cards that are currently hidden
+            const hiddenCards = document.querySelectorAll(".p-cards.hidden");
+
+            // Loop through the first 2 hidden cards and show them
+            for (let i = 0; i < 2; i++) {
+               if (hiddenCards[i]) {
+                  hiddenCards[i].classList.remove("hidden");
+               }
+            }
+
+            // If there are no more hidden cards left, hide the button
+
+            if (document.querySelectorAll(".p-cards.hidden").length === 0) {
+               loadMoreBtn.style.display = "none";
+            }
          });
       </script>
    </body>
