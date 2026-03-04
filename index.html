@@ -11,344 +11,9 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <style>
-         :root {
-            --bg-color: #050505;
-            --card-bg: #0f0f0f;
-            --text-main: #ededed;
-            --text-muted: #888888;
-            --gray-400: rgba(163, 163, 163, 1);
-            --gray-500: rgba(115, 115, 115, 1);
-            --trans: 0.3s all ease;
-         }
-
-         body {
-            font-family: "Inter", sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            cursor: none;
-            text-transform: capitalize;
-         }
-
-         .content-wrapper p {
-            color: var(--gray-400) !important;
-            margin-bottom: 0;
-         }
-         ul li {
-            color: var(--gray-500);
-         }
-
-         .gray-400,
-         .text-muted {
-            color: var(--gray-500) !important;
-         }
-
-         .gray-500 {
-            color: var(--gray-500) !important;
-         }
-
-         /* Aesthetics Overrides for "Linear" feel */
-         .tracking-tight {
-            letter-spacing: -0.025em;
-         }
-         .tracking-tighter {
-            letter-spacing: -0.05em;
-         }
-
-         ::selection {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-         }
-
-         /* Custom Cursor */
-         #cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 1rem;
-            height: 1rem;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            mix-blend-mode: difference;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-         }
-         #cursor-follower {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 3rem;
-            height: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
-         }
-
-         /* Grid Background */
-         .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 4rem 4rem;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            pointer-events: none;
-         }
-
-         /* Typography & Layout Utilities */
-         .display-super {
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1.1;
-         }
-
-         .section-padding {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-         }
-
-         /* Nav */
-         .navbar-custom {
-            padding: 1.5rem 6vw;
-            mix-blend-mode: difference;
-         }
-         .nav-link {
-            color: #a3a3a3;
-            font-size: 1.175rem;
-            font-weight: 500;
-            transition: color 0.3s;
-         }
-         .nav-link:hover,
-         .nav-link.active {
-            color: white;
-         }
-
-         /* Cards & Interactions */
-         .project-card {
-            position: relative;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-         }
-
-         .card-image-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.5rem;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            aspect-ratio: 4/3;
-            margin-bottom: 1.5rem;
-         }
-         .card-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.2);
-            transition: background 0.5s;
-            z-index: 10;
-         }
-         .project-card:hover .card-overlay {
-            background: transparent;
-         }
-         .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: transform 0.7s ease-out, filter 0.5s;
-         }
-         .project-card:hover .project-img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
-         }
-         .card-arrow {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            padding: 0.5rem;
-            opacity: 0;
-            transform: translateY(-1rem);
-            transition: all 0.3s;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-         }
-         .project-card:hover .card-arrow {
-            opacity: 1;
-            transform: translateY(0);
-         }
-
-         /* Gradient Text */
-         .text-gradient {
-            background: linear-gradient(to right, #a3a3a3, #525252);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-         }
-
-         /* Utilities */
-         .badge-custom {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a3a3a3;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 400;
-         }
-
-         .btn-custom {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            border-radius: 50rem;
-            padding: 0.75rem 1.5rem;
-            font-size: 0.875rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-         }
-         .btn-custom:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-         }
-
-         .skill-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            transition: background 0.3s;
-         }
-         .skill-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-         }
-
-         .scroll-reveal,
-         .hero-text,
-         .hero-sub,
-         .hero-cta {
-            opacity: 0;
-         }
-
-         .nav-bar {
-            background-color: rgba(15, 15, 15, 0.05);
-            backdrop-filter: blur(10px);
-            z-index: 1099;
-         }
-
-         .p-cards.hidden {
-            display: none;
-         }
-
-         /* Responsive */
-         @media (min-width: 768px) {
-            .navbar-custom {
-               padding: 1.5rem 6rem;
-            }
-            .content-wrapper {
-               padding-left: 6rem;
-               padding-right: 6rem;
-            }
-            .mt-md-custom {
-               margin-top: 6rem;
-            }
-         }
-
-         @media (max-width: 991px) {
-            .project-card .flex-wrap {
-               flex-direction: column;
-            }
-         }
-
-         @media (max-width: 767px) {
-            #cursor,
-            #cursor-follower {
-               display: none;
-            }
-            body {
-               cursor: auto;
-            }
-            .content-wrapper {
-               padding-left: 1.5rem;
-               padding-right: 1.5rem;
-            }
-
-            .navbar-collapse-cust {
-               position: fixed;
-               /* z-index: 999; */
-               width: 100%;
-               transform: translateX(-100%);
-               padding: 15px 6%;
-               top: 65px;
-               left: 0;
-               opacity: 0;
-               transition: 0.6s all ease;
-               flex-direction: column;
-            }
-
-            .navbar-collapse-cust.show {
-               transform: translateX(0);
-               background-color: var(--bg-color);
-               opacity: 1;
-            }
-
-            .navbar-collapse-cust a.nav-link {
-               font-size: 16px;
-            }
-
-            .section-padding {
-               padding-top: 4rem;
-               padding-bottom: 4rem;
-            }
-
-            .min-vh-100 {
-               min-height: unset !important;
-            }
-
-            .banner {
-               padding-top: 6rem !important;
-               padding-bottom: 2rem !important;
-            }
-
-            .navbar-custom {
-               padding-top: 1.1rem;
-               padding-bottom: 1.1rem;
-            }
-
-            .display-super {
-               font-size: clamp(2rem, 8vw, 6rem);
-            }
-
-            main.position-relative p {
-               font-size: 18px !important;
-            }
-
-            .project-card .flex-wrap {
-               flex-direction: column;
-            }
-         }
-      </style>
+      <link rel="stylesheet" href="assets/css/style.css" />
    </head>
    <body>
-      <!-- Custom Cursor Elements -->
-      <div id="cursor"></div>
-      <div id="cursor-follower"></div>
-
-      <!-- Background Grid -->
-      <div class="bg-grid"></div>
-
       <!-- Navigation -->
       <nav class="navbar nav-bar navbar-expand navbar-custom fixed-top w-100 d-flex justify-content-between align-items-center">
          <a href="#" class="text-white text-decoration-none fs-5 fw-medium tracking-tight hover-trigger fs-4" data-hover-scale="1.5">OwN<span style="color: #737373">.CoDe</span> </a>
@@ -503,7 +168,7 @@
                   <div class="project-card hover-trigger cursor-none">
                      <div class="card-image-wrapper">
                         <div class="card-overlay"></div>
-                        <img src="assets/images/storerav-thumbnail.png" alt="" alt="storerav-thumbnail" class="project-img" />
+                        <img src="assets/images/renderreal-thumbnail.png" alt="renderreal-thumbnail" class="project-img" />
                         <div class="card-arrow">
                            <a href="https://storerav.com/">
                               <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
@@ -512,90 +177,13 @@
                      </div>
                      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
                         <div>
-                           <h3 class="h5 fw-medium text-white mb-1">StoreRav</h3>
-                           <p class="text-muted small">Pre Build Theme</p>
+                           <h3 class="h5 fw-medium text-white mb-1">Renderreal</h3>
+                           <p class="text-muted small">3D Design Parts, Characters</p>
                         </div>
                         <div class="d-flex gap-2">
                            <span class="badge-custom">HTML</span>
                            <span class="badge-custom">CSS</span>
                            <span class="badge-custom">Jquery</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <!-- Project 6 -->
-               <div class="col-md-6 scroll-reveal mt-md-custom p-cards hidden">
-                  <div class="project-card hover-trigger cursor-none">
-                     <div class="card-image-wrapper">
-                        <div class="card-overlay"></div>
-                        <img src="assets/images/zohoone-thumbnail.png" alt="zohoone-thumbnail" class="project-img" />
-                        <div class="card-arrow">
-                           <a href="https://zohoonedevelopers.com/">
-                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                           </a>
-                        </div>
-                     </div>
-                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
-                        <div>
-                           <h3 class="h5 fw-medium text-white mb-1">Zoho One Developers</h3>
-                           <p class="text-muted small">Zoho Services Provider</p>
-                        </div>
-                        <div class="d-flex gap-2">
-                           <span class="badge-custom">WordPress</span>
-                           <span class="badge-custom">ACF</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <!-- Project 7 -->
-               <div class="col-md-6 scroll-reveal p-cards hidden">
-                  <div class="project-card hover-trigger cursor-none">
-                     <div class="card-image-wrapper">
-                        <div class="card-overlay"></div>
-                        <img src="assets/images/ribbash-thumbnal.png" alt="ribbash-thumbnal" class="project-img" />
-                        <div class="card-arrow">
-                           <a href="https://oasis.ribbashstaging.com">
-                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                           </a>
-                        </div>
-                     </div>
-                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
-                        <div>
-                           <h3 class="h5 fw-medium text-white mb-1">Oasis Rebbash</h3>
-                           <p class="text-muted small">AI Products</p>
-                        </div>
-                        <div class="d-flex gap-2">
-                           <span class="badge-custom">Next.js</span>
-                           <span class="badge-custom">Bootstrap</span>
-                           <span class="badge-custom">CSS3</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <!-- Project 8 -->
-               <div class="col-md-6 scroll-reveal mt-md-custom p-cards hidden">
-                  <div class="project-card hover-trigger cursor-none">
-                     <div class="card-image-wrapper">
-                        <div class="card-overlay"></div>
-                        <img src="assets/images/shirmo-dashboard-thumbnai.png" alt="shirmo-dashboard-thumbnai" class="project-img" />
-                        <div class="card-arrow">
-                           <a href="https://github.com/Aftab-YaSeen123/shirmo-dashboard.github.io">
-                              <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                           </a>
-                        </div>
-                     </div>
-                     <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
-                        <div>
-                           <h3 class="h5 fw-medium text-white mb-1">Shirmo Dashboard</h3>
-                           <p class="text-muted small">Manage Products</p>
-                        </div>
-                        <div class="d-flex gap-2">
-                           <span class="badge-custom">Sneet</span>
-                           <span class="badge-custom">Bootstrap</span>
-                           <span class="badge-custom">SCSS</span>
                         </div>
                      </div>
                   </div>
@@ -621,26 +209,59 @@
                      <div class="row g-3">
                         <div class="col-md-6">
                            <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
-                              <span class="iconify text-light" data-icon="lucide:code-2" data-width="20"></span>
-                              <span class="small text-light">Frontend Dev</span>
+                              <span class="iconify text-light" data-icon="simple-icons:react" data-width="20"></span>
+                              <span class="small text-light">React.JS</span>
                            </div>
                         </div>
                         <div class="col-md-6">
                            <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
-                              <span class="iconify text-light" data-icon="lucide:layers" data-width="20"></span>
-                              <span class="small text-light">UI Design</span>
+                              <span class="iconify text-light" data-icon="simple-icons:vuedotjs" data-width="20"></span>
+                              <span class="small text-light">Vue.JS</span>
                            </div>
                         </div>
                         <div class="col-md-6">
                            <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
-                              <span class="iconify text-light" data-icon="lucide:cpu" data-width="20"></span>
-                              <span class="small text-light">WebGL</span>
+                              <span class="iconify text-light" data-icon="simple-icons:nextdotjs" data-width="20"></span>
+                              <span class="small text-light">Next.JS</span>
                            </div>
                         </div>
+
                         <div class="col-md-6">
                            <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
-                              <span class="iconify text-light" data-icon="lucide:smartphone" data-width="20"></span>
-                              <span class="small text-light">Responsive</span>
+                              <span class="iconify text-light" data-icon="simple-icons:wordpress" data-width="20"></span>
+                              <span class="small text-light">WordPress</span>
+                           </div>
+                        </div>
+
+                        <div class="col-12">
+                           <span class="gray-400">Tools</span>
+                        </div>
+
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="simple-icons:git" data-width="20"></span>
+                              <span class="small text-light">Git</span>
+                           </div>
+                        </div>
+
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="simple-icons:github" data-width="20"></span>
+                              <span class="small text-light">Github</span>
+                           </div>
+                        </div>
+
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="simple-icons:cypress" data-width="20"></span>
+                              <span class="small text-light">Cypress</span>
+                           </div>
+                        </div>
+
+                        <div class="col-md-6">
+                           <div class="skill-item d-flex align-items-center gap-3 hover-trigger scroll-reveal">
+                              <span class="iconify text-light" data-icon="simple-icons:greensock" data-width="20"></span>
+                              <span class="small text-light">GSAP</span>
                            </div>
                         </div>
                      </div>
@@ -695,6 +316,10 @@
             </footer>
          </section>
       </main>
+
+      <div id="cursor"></div>
+      <div id="cursor-follower"></div>
+      <div class="bg-grid"></div>
 
       <!-- Scripts -->
       <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -855,20 +480,13 @@
       <!-- Explore more btn  -->
       <script>
          const loadMoreBtn = document.querySelector(".load-more");
-
          loadMoreBtn.addEventListener("click", () => {
-            // Select all cards that are currently hidden
             const hiddenCards = document.querySelectorAll(".p-cards.hidden");
-
-            // Loop through the first 2 hidden cards and show them
             for (let i = 0; i < 2; i++) {
                if (hiddenCards[i]) {
                   hiddenCards[i].classList.remove("hidden");
                }
             }
-
-            // If there are no more hidden cards left, hide the button
-
             if (document.querySelectorAll(".p-cards.hidden").length === 0) {
                loadMoreBtn.style.display = "none";
             }
